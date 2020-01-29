@@ -7,10 +7,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./confirm.component.css']
 })
 export class ConfirmComponent implements OnInit {
-  
+
   @Input() title: string;
   @Input() message: string;
-  
+
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {

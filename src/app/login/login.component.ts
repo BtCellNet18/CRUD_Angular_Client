@@ -17,15 +17,15 @@ export class LoginComponent implements OnInit {
   get password() { return this.loginForm.controls.password.value; }
 
   constructor(private authService: AuthService,
-    private formBuilder: FormBuilder,
-    private router: Router) { }
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    
+
     // Log value of the form every time it changes
     this.loginForm.valueChanges.subscribe(console.log);
   }

@@ -12,14 +12,14 @@ export class AuthService {
   constructor(private http: HttpClient) {
     this.url += '/auth';
   }
- 
+
   get token(): string {
     return localStorage.getItem('TOKEN');
   }
 
   set token(token: string) {
     localStorage.setItem('TOKEN', token);
-  } 
+  }
 
   get payload() {
     return jwt_decode(this.token);
@@ -27,14 +27,14 @@ export class AuthService {
 
   get timestamp(): number {
     return new Date().getTime() / 1000;
-  } 
+  }
 
   get username(): string {
     return this.payload.sub;
   }
 
   login(username: string, password: string): any {
-    const credentials = {username: username, password: password};
+    const credentials = {username, password};
     return this.http.post(`${this.url}`, credentials);
   }
 
@@ -48,5 +48,5 @@ export class AuthService {
     } else {
       return false;
     }
-  }  
+  }
 }

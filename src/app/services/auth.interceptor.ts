@@ -8,7 +8,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService, ) { }
 
   intercept(req: HttpRequest<any>,
-  next: HttpHandler): Observable<HttpEvent<any>> {
+            next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (this.authService.isLoggedIn()) {
       const clone = req.clone({
