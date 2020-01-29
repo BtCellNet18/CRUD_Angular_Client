@@ -12,7 +12,7 @@ import { DialogService } from '../services/dialog.service';
 })
 export class ListUsersComponent implements OnInit {
 
-  private users: Observable<User[]>;
+  users: Observable<User[]>;
 
   constructor(private userService: UserService,
     private modalService: DialogService,
