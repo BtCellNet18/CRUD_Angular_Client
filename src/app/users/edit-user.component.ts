@@ -12,19 +12,20 @@ export class EditUserComponent implements OnInit {
 
   user: User;
 
-  constructor(private service: UserService,
+  constructor(
+    private service: UserService,
     private router: Router) { }
 
   ngOnInit() {
-    let id = window.localStorage.getItem("EDIT_USER_ID");
+    const id = window.localStorage.getItem('EDIT_USER_ID');
     if (!id) {
-      alert("Invalid action.")
+      alert('Invalid action.');
       this.router.navigate(['list-users']);
       return;
     } else {
       this.service.getByID(+id)
         .subscribe(data => {
-          this.user = data
+          this.user = data;
         },
           error => {
             alert(error);

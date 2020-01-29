@@ -19,32 +19,32 @@ import { ConfirmComponent } from './dialogs/confirm/confirm.component';
 import { DialogService } from './services/dialog.service';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    redirectTo: 'home', 
-    pathMatch: 'full' 
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
-  { 
-    path: 'home', 
-    component: HomeComponent 
+  {
+    path: 'home',
+    component: HomeComponent
   },
-  { 
-    path: 'login', 
-    component: LoginComponent 
+  {
+    path: 'login',
+    component: LoginComponent
   },
-  { 
-    path: 'add-user', 
-    component: AddUserComponent 
+  {
+    path: 'add-user',
+    component: AddUserComponent
   },
-  { 
-    path: 'edit-user', 
-    component: EditUserComponent, 
-    canActivate: [AuthGuard] 
+  {
+    path: 'edit-user',
+    component: EditUserComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'list-users', 
-    component: ListUsersComponent, 
-    canActivate: [AuthGuard] 
+  {
+    path: 'list-users',
+    component: ListUsersComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

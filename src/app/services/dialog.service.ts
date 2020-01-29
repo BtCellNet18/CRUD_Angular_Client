@@ -8,7 +8,7 @@ import { ConfirmComponent } from '../dialogs/confirm/confirm.component';
 export class DialogService {
 
   constructor(private modalService: NgbModal) { }
-   
+
   confirm(title: string, message: string): Promise<boolean> {
     const confirmRef = this.modalService.open(ConfirmComponent);
     confirmRef.componentInstance.title = title;

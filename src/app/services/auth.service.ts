@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private url = environment.baseUrl;
 
-  constructor(private http: HttpClient) { 
-    this.url += '/auth'
+  constructor(private http: HttpClient) {
+    this.url += '/auth';
   }
  
   get token(): string {
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   get timestamp(): number {
-    return new Date().getTime()/1000;
+    return new Date().getTime() / 1000;
   } 
 
   get username(): string {
@@ -34,17 +34,16 @@ export class AuthService {
   }
 
   login(username: string, password: string): any {
-    let credentials = {username: username, password: password}
+    const credentials = {username: username, password: password};
     return this.http.post(`${this.url}`, credentials);
   }
 
   logout() {
     localStorage.removeItem('TOKEN');
-  } 
+  }
 
   isLoggedIn() {
-    if (this.token && this.payload.exp > this.timestamp)
-    {
+    if (this.token && this.payload.exp > this.timestamp) {
       return true;
     } else {
       return false;

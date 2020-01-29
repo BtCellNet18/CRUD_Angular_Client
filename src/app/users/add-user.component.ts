@@ -12,7 +12,8 @@ export class AddUserComponent implements OnInit {
 
   user: User;
 
-  constructor(private service: UserService,
+  constructor(
+    private service: UserService,
     private router: Router) { }
 
   ngOnInit() {
