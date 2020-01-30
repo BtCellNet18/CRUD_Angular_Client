@@ -20,8 +20,12 @@
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
+    "@popperjs/core": "^2.0.3",
+    "angular-cli-ghpages": "^0.6.2",
     "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
+    "popper.js": "^1.16.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
