@@ -1,0 +1,21 @@
+name: CI/CD
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.13.0'
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.GitHub_Actions }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: dist/Angular # The folder the action should deploy.
