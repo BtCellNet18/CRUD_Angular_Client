@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user.model';
 import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 import { DialogService } from '../services/dialog.service';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-list-users',
@@ -15,9 +16,10 @@ export class ListUsersComponent implements OnInit {
   users: Observable<User[]>;
 
   constructor(
+    private router: Router,
     private userService: UserService,
     private modalService: DialogService,
-    private router: Router) { }
+    private storageService: StorageService) { }
 
   ngOnInit() {
     this.reloadData();
@@ -35,7 +37,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   onEdit(id: number) {
-    window.localStorage.setItem('EDIT_USER_ID', id.toString());
+    this.storageService.setItem('EDIT_USER_ID', id.toString());
     this.router.navigate(['edit-user']);
   }
 

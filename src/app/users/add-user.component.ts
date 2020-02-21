@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user.model';
+import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-add-user',
@@ -13,7 +14,8 @@ export class AddUserComponent implements OnInit {
   user: User;
 
   constructor(
-    private service: UserService,
+    private storageService: StorageService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit() {
@@ -21,12 +23,20 @@ export class AddUserComponent implements OnInit {
   }
 
   onCreate() {
-    this.service.create(this.user)
+    this.userService.create(this.user)
       .subscribe(data => {
         this.router.navigate(['list-users']);
       },
         error => {
           alert(error);
         });
+  }
+
+  onCancel() {
+    if (this.storageService.isTokenValid()) {
+      this.router.navigate(['list-users']);
+    } else {
+      this.router.navigate(['home']);
+    }
   }
 }

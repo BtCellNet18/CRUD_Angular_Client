@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   get password() { return this.loginForm.controls.password.value; }
 
   constructor(private authService: AuthService,
+              private storageService: StorageService,
               private formBuilder: FormBuilder,
               private router: Router) { }
 
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-    // Log value of the form every time it changes
+    // Log any form value changes
     this.loginForm.valueChanges.subscribe(console.log);
   }
 
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
           console.log(data);
 
           if (data && data.token) {
-            localStorage.setItem('TOKEN', data.token);
+            this.storageService.setToken(data.token);
             this.router.navigate(['list-users']);
           }
         },

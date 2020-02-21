@@ -4,7 +4,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
 import { ListUsersComponent } from './users/list-users.component';
@@ -17,6 +16,10 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth.guard';
 import { ConfirmComponent } from './dialogs/confirm/confirm.component';
 import { DialogService } from './services/dialog.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { LayoutComponent } from './layout/layout.component';
+import { StorageService } from './services/storage.service';
 
 const routes: Routes = [
   {
@@ -26,25 +29,40 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: LayoutComponent,
+    children: [
+      { path: '', component: HomeComponent }
+    ]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LayoutComponent,
+    children: [
+      { path: '', component: LoginComponent }
+    ]
   },
   {
     path: 'add-user',
-    component: AddUserComponent
+    component: LayoutComponent,
+    children: [
+      { path: '', component: AddUserComponent }
+    ]
   },
   {
     path: 'edit-user',
-    component: EditUserComponent,
-    canActivate: [AuthGuard]
+    component: LayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: EditUserComponent }
+    ]
   },
   {
     path: 'list-users',
-    component: ListUsersComponent,
-    canActivate: [AuthGuard]
+    component: LayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: ListUsersComponent }
+    ]
   }
 ];
 
@@ -57,7 +75,10 @@ const routes: Routes = [
     ListUsersComponent,
     AddUserComponent,
     EditUserComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    HeaderComponent,
+    FooterComponent,
+    LayoutComponent
   ],
   imports: [
     NgbModule,
@@ -75,7 +96,8 @@ const routes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

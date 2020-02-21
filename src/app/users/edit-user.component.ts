@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -13,17 +14,18 @@ export class EditUserComponent implements OnInit {
   user: User;
 
   constructor(
-    private service: UserService,
+    private storageService: StorageService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit() {
-    const id = window.localStorage.getItem('EDIT_USER_ID');
+    const id = this.storageService.getItem('EDIT_USER_ID');
     if (!id) {
-      alert('Invalid action.');
+      alert(`User Not Found`);
+      this.storageService.removeItem('EDIT_USER_ID');
       this.router.navigate(['list-users']);
-      return;
     } else {
-      this.service.getByID(+id)
+      this.userService.getByID(+id)
         .subscribe(data => {
           this.user = data;
         },
@@ -34,8 +36,9 @@ export class EditUserComponent implements OnInit {
   }
 
   onUpdate() {
-    this.service.update(this.user)
+    this.userService.update(this.user)
       .subscribe(data => {
+        this.storageService.removeItem('EDIT_USER_ID');
         this.router.navigate(['list-users']);
       },
         error => {

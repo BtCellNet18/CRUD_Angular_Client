@@ -1,0 +1,22 @@
+.toolbar {
+  height: 60px;
+  margin: 0px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+}
+
+.spacer {
+  flex: 1;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  background-color: #1f87ee;
+}

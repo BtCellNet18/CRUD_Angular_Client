@@ -1,11 +1,18 @@
 <div class="container">
-  <h3>Home Page</h3>
-  <p *ngIf="isLoggedIn()">
-    Welcome {{ username }}
-  </p>
-  <ul>
-    <li *ngIf="!isLoggedIn()"><a routerLink="/add-user">Sign Up</a></li>
-    <li *ngIf="!isLoggedIn()"><a routerLink="/login">Login</a></li>
-    <li *ngIf="isLoggedIn()"><a (click)="onLogout()" routerLink="">Logout</a></li>
-  </ul>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <a href="https://github.com/BtCellNet18/CRUD_Angular_Client">
+        <img src="assets/images/GitHub.png" alt="GitHub" title="GitHub" height="32" width="32" />
+      </a>        
+      <h3>CRUD Angular Client</h3><br />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p>
+        A sample Angular client that consumes a web
+        <a href="https://webapi20200129025509.azurewebsites.net/">API</a>.
+      </p>    
+    </div>
+  </div>
 </div>

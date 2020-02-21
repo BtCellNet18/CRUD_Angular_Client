@@ -13,7 +13,6 @@ export class DialogService {
     const confirmRef = this.modalService.open(ConfirmComponent);
     confirmRef.componentInstance.title = title;
     confirmRef.componentInstance.message = message;
-
     return confirmRef.result;
   }
 }
